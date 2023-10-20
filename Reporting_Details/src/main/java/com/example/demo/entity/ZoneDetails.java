@@ -3,17 +3,18 @@ package com.example.demo.entity;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class ZoneDetails implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer zoneId;
+
+	@NotEmpty(message = "Zone Name can not be a null or empty")
 	private String zoneName;
+	
 	private String zoneState;
 	private String zoneCountry;
 	
