@@ -1,12 +1,13 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
+@Table(name = "Zone_Details")
 public class ZoneDetails implements Serializable {
 
 	@Id
@@ -18,6 +19,19 @@ public class ZoneDetails implements Serializable {
 	private String zoneState;
 	private String zoneCountry;
 	
+	@JoinColumn(name = "gaon_Id_fk")
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<GaonDetails> gaonDetailsList;
+	
+	
+	public List<GaonDetails> getGaonDetailsList() {
+		return gaonDetailsList;
+	}
+
+	public void setGaonDetailsList(List<GaonDetails> gaonDetailsList) {
+		this.gaonDetailsList = gaonDetailsList;
+	}
+
 	public ZoneDetails() {
 		super();
 		// TODO Auto-generated constructor stub
